@@ -2,7 +2,7 @@
 
 ### Description
 
-groq is a Go library for the [groq.com](https://console.groq.com) API.
+github.com/jpoz/groq is community maintained Go library for the [groq.com](https://console.groq.com) API.
 
 
 ### Installation
@@ -23,7 +23,8 @@ go get -u github.com/jpoz/groq
 ### Examples
 
 ```go
-client := groq.NewClient() // will load API key from GROQ_API_KEY
+client := groq.NewClient() // will load API key from GROQ_API_KEY environment variable
+client := groq.NewClient(WithAPIKey("YOUR_API_KEY"))
 
 response, err := client.CreateChatCompletion(groq.CompletionCreateParams{
     Model: "llama3-8b-8192",
@@ -45,7 +46,7 @@ println(response.Choices[0].Message.Content)
 
 
 ```go
-client := groq.NewClient()
+client := groq.NewClient(WithAPIKey("YOUR_API_KEY"))
 
 chatCompletion, err := client.CreateChatCompletion(groq.CompletionCreateParams{
     Model: "llama3-70b-8192",

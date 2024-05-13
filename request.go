@@ -1,5 +1,7 @@
 package groq
 
+import "os"
+
 // CompletionCreateParams struct to handle API parameters
 type CompletionCreateParams struct {
 	Messages         []Message      `json:"messages"`
@@ -21,6 +23,37 @@ type CompletionCreateParams struct {
 	TopP             float32        `json:"top_p,omitempty"`
 	User             string         `json:"user,omitempty"`
 }
+
+type TranscriptionCreateParams struct {
+	File                   *os.File             `json:"file"`
+	Model                  TranslationModel     `json:"model"`
+	Language               string               `json:"language,omitempty"`
+	Prompt                 string               `json:"prompt,omitempty"`
+	ResponseFormat         ResponseFormatString `json:"response_format,omitempty"`
+	Temperature            float32              `json:"temperature,omitempty"`
+	TimestampGranularities TimestampGranularity `json:"timestamp_granularity,omitempty"`
+}
+
+type TranslationModel string
+
+const TranslationModel_WhisperLargeV3 = "whisper-large-v3"
+
+type TimestampGranularity string
+
+const (
+	TimestampGranularity_Word    = "word"
+	TimestampGranularity_Segment = "segment"
+)
+
+type ResponseFormatString string
+
+const (
+	ResponseFormatString_JSON        = "json"
+	ResponseFormatString_Text        = "text"
+	ResponseFormatString_Srt         = "srt"
+	ResponseFormatString_VerboseJSON = "verbose_json"
+	ResponseFormatString_Vtt         = "vtt"
+)
 
 // MessageToolCallFunction struct to handle function details
 type MessageToolCallFunction struct {

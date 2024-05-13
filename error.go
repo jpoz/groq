@@ -10,7 +10,7 @@ type Error struct {
 
 func (e Error) Error() string {
 	if e.FailedGeneration == "" {
-		return fmt.Sprintf("%s: %s", e.Type, e.FailedGeneration)
+		return fmt.Sprintf("%s: %s", e.Type, e.Message)
 	}
 	return fmt.Sprintf("%s: %s\n\nfailed generation:\n%s", e.Type, e.Message, e.FailedGeneration)
 }
