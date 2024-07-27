@@ -24,7 +24,7 @@ go get -u github.com/jpoz/groq
 
 ```go
 client := groq.NewClient() // will load API key from GROQ_API_KEY environment variable
-client := groq.NewClient(WithAPIKey("YOUR_API_KEY"))
+client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY"))
 
 response, err := client.CreateChatCompletion(groq.CompletionCreateParams{
     Model: "llama3-8b-8192",
