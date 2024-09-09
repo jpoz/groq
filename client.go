@@ -54,7 +54,7 @@ func (c *Client) CreateChatCompletion(params CompletionCreateParams) (*ChatCompl
 	return c.streamChatCompletion(params)
 }
 
-func (c *Client) CreateTranscription(params TranscriptionCreateParams) (*ChatCompletion, error) {
+func (c *Client) CreateTranscription(params TranscriptionCreateParams) (*Transcript, error) {
 	formFields := map[string]string{
 		"model": string(TranslationModel_WhisperLargeV3),
 	}
@@ -106,7 +106,24 @@ func (c *Client) CreateTranscription(params TranscriptionCreateParams) (*ChatCom
 		return nil, errResp.Error
 	}
 
-	return nil, nil
+	var result Transcript
+
+	defer resp.Body.Close()
+	switch params.ResponseFormat {
+	case "text":
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+		result.Text = string(body)
+	default:
+		err = json.NewDecoder(resp.Body).Decode(&result)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return &result, nil
 }
 
 func (c *Client) syncChatCompletion(params CompletionCreateParams) (*ChatCompletion, error) {
@@ -248,6 +265,10 @@ func (c *Client) newFormWithFileRequest(method, path string, formFields map[stri
 		if err != nil {
 			return nil, err
 		}
+	}
+	err = writer.Close()
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest(method, c.baseUrl+path, &requestBody)

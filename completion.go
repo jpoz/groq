@@ -72,6 +72,10 @@ type ChatCompletion struct {
 	Stream chan *ChatChunkCompletion `json:"-"`
 }
 
+type Transcript struct {
+	Text string `json:"text"`
+}
+
 type ErrorResponse struct {
 	Error Error `json:"error"`
 }
