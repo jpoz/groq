@@ -24,14 +24,14 @@ type ChoiceDeltaToolCall struct {
 type ChoiceDelta struct {
 	Content      string                   `json:"content"`
 	Role         string                   `json:"role"`
-	FunctionCall *ChoiceDeltaFunctionCall `json:"functionCall,omitempty"`
-	ToolCalls    []ChoiceDeltaToolCall    `json:"toolCalls,omitempty"`
+	FunctionCall *ChoiceDeltaFunctionCall `json:"function_call,omitempty"`
+	ToolCalls    []ChoiceDeltaToolCall    `json:"tool_calls,omitempty"`
 }
 
 // Choice struct for handling choices in completion chunks
 type ChoiceChunk struct {
 	Delta        ChoiceDelta    `json:"delta"`
-	FinishReason string         `json:"finishReason"`
+	FinishReason string         `json:"finish_reason"`
 	Index        int            `json:"index"`
 	Logprobs     ChoiceLogprobs `json:"logprobs"`
 }
@@ -48,7 +48,7 @@ type ChatChunkCompletion struct {
 	Created           *int          `json:"created"`
 	Model             *string       `json:"model"`
 	Object            *string       `json:"object"`
-	SystemFingerprint *string       `json:"systemFingerprint"`
+	SystemFingerprint *string       `json:"system_fingerprint"`
 	XGroq             *XGroq        `json:"xGroq,omitempty"`
 
 	stream chan *ChoiceChunk

@@ -2,7 +2,7 @@
 
 ### Description
 
-github.com/jpoz/groq is community maintained Go library for the [groq.com](https://console.groq.com) API.
+github.com/jpenna/groq is community maintained Go library for the [groq.com](https://console.groq.com) API.
 
 
 ### Installation
@@ -10,7 +10,7 @@ github.com/jpoz/groq is community maintained Go library for the [groq.com](https
 To install groq, run the following command in your terminal:
 
 ```shell
-go get -u github.com/jpoz/groq
+go get -u github.com/jpenna/groq
 ```
 
 ### Features

@@ -1,3 +1,3 @@
-module github.com/jpoz/groq
+module github.com/jpenna/groq
 
-go 1.22.2
+go 1.22.3

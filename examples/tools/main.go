@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/jpoz/groq"
+	"github.com/jpenna/groq"
 )
 
 // This currently isn't working. It seems to be an issue on their side:

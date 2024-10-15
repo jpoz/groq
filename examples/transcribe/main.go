@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/jpoz/groq"
+	"github.com/jpenna/groq"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jpoz/groq"
+	"github.com/jpenna/groq"
 )
 
 func main() {
